@@ -1,0 +1,16 @@
+
+Project/.browserslistrc
+Project/.editorconfig
+Project/.eslintrc.json
+Project/.vscode/extensions.json
+Project/.vscode/settings.json
+Project/capacitor.config.ts
+Project/angular.json
+Project/ionic.config.json
+Project/karma.conf.js
+Project/package-lock.json
+Project/package.json
+.vscode
+Project/tsconfig.app.json
+Project/tsconfig.json
+Project/tsconfig.spec.json
