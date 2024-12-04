@@ -5,10 +5,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
+  },//HOME IS THE MAIN PAGE AFTER LOGGINNG IN
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'logon',  //mao ni ang first mu gawas inig ionic serve
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'logon',
+    loadChildren: () => import('./logon/logon.module').then( m => m.LogonPageModule)
   },
 ];
 
