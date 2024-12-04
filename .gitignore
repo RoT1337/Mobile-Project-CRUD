@@ -26,3 +26,4 @@ projectCRUD/.editorconfig
 projectCRUD/tsconfig.app.json
 projectCRUD/tsconfig.json
 projectCRUD/tsconfig.spec.json
+projectCRUD/ionic.starter.json
