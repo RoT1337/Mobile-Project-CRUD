@@ -14,3 +14,15 @@ Project/package.json
 Project/tsconfig.app.json
 Project/tsconfig.json
 Project/tsconfig.spec.json
+projectCRUD/.browserslistrc
+projectCRUD/.eslintrc.json
+projectCRUD/angular.json
+projectCRUD/capacitor.config.ts
+projectCRUD/ionic.config.json
+projectCRUD/karma.conf.js
+projectCRUD/package-lock.json
+projectCRUD/package.json
+projectCRUD/.editorconfig
+projectCRUD/tsconfig.app.json
+projectCRUD/tsconfig.json
+projectCRUD/tsconfig.spec.json
