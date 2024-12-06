@@ -12,4 +12,21 @@ export class RegisterPage implements OnInit {
   ngOnInit() {
   }
 
+  password: string = '';
+  confirmPassword: string = '';
+  passwordsMatch: boolean = true;
+
+  checkPasswordMatch() {
+    this.passwordsMatch = this.password === this.confirmPassword;
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+
+    if (this.passwordsMatch) {
+      console.log('Form submitted successfully!');
+    } else {
+      console.error('Passwords do not match.');
+    }
+  }
 }
