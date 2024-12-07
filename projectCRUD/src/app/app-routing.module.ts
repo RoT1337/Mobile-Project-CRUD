@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'habit-selection',
     loadChildren: () => import('./habit-selection/habit-selection.module').then( m => m.HabitSelectionPageModule)
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
 
 ];
 

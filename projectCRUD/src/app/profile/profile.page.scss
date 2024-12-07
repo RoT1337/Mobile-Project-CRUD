@@ -1,0 +1,70 @@
+@import "../../theme/variables.scss"; 
+
+
+.wrapper{
+    display: flex;
+    height: 100%;
+   width: 100%;
+   color: black;
+   background-color: map-get($colors, primary);
+   justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+   
+}
+
+#profile{
+    color: black;
+    font-size: larger;
+    padding-bottom: 100%;
+}
+
+#profCard{
+    background-color: white;
+    width: 95%;
+    height: 25%;
+    border-radius: 10px;
+}
+#avatar{
+    flex-shrink: 0;
+}
+
+#namePic{
+    display: flex;
+    flex-direction: row;
+    //justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+
+
+    #name{
+        padding-left: 10px;
+        flex-grow: 1;
+        flex-shrink: 0;
+        white-space: nowrap;
+    }
+
+    #selector{
+        margin-left: 30%;
+        flex-shrink: 0;
+    }
+}
+
+#totalHours{
+    padding-left: 10px; 
+    font-size: larger;
+}
+
+#total{
+    font-size: medium;
+    color: rgb(0, 0, 0);
+}
+
+#stats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* space between total hours and tasks */
+    width: 95%;
+    padding: 10px;
+  }
