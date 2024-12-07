@@ -28,10 +28,7 @@ ion-content{
     }
 }
 
-ion-input{
-    background-color: rgba(255, 255, 255, 0.471);
-    text-align: left;
-}
+
 
 #buttonsArea{
 margin-top: 10%;
@@ -42,3 +39,30 @@ ion-button{
     max-width: 300px;
 }
 
+.form-container {
+    display: flex;
+    color: black;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.input-item {
+    --background: #d4d0e2;
+    --ion-text-color: #333;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+ion-button.register-button {
+    --background: #556ad2;
+    --background-activated: #515c96;
+    --color: #edebf0;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    width: 100%;
+}
