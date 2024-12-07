@@ -7,7 +7,7 @@
     justify-content: space-between;
     justify-content: center;
     align-items: center;
-    background-color: #4d57c8;
+    background-color: map-get($colors, primary);
     margin-bottom: 1rem;
 }
 
@@ -20,7 +20,7 @@
 .habits-container {
     display: flex;
     color: black;
-    background-color: #4d57c8;
+    background-color: map-get($colors, primary);
     align-items: first baseline;
     justify-content: space-between;
     justify-content: center;
@@ -60,7 +60,7 @@
 }
 
 ion-button{
-  --background: #424aa9;
+  background-color: map-get($colors, primary);
   --background-activated: #2d3273;
   --color: #ffffff;
 }
@@ -70,14 +70,14 @@ ion-segment {
 }
 
 ion-segment-button {
-  --background: #424aa9;
+  background-color: map-get($colors, primary);
   justify-content: space-between;
   justify-content: center;
   --color: #ffffff;
 }
 
 ion-toolbar {
-    --background: #4d57c8;
+    --background: #653c92;
     --color: #ffffff;
 }
 
