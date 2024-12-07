@@ -1,20 +1,71 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-app>
+  <ion-menu side="start" menuId="main-menu" contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item button>Profile</ion-item>
+        <ion-item button>Settings</ion-item>
+        <ion-item button>Notifications</ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="ion-page" id="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>Dashboard</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="enterEditMode()" class="custom-edit-button">Edit</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-content class="ion-padding">
+      <div class="calendar-header">
+        <div class="week">
+          <ion-segment scrollable>
+            <ion-segment-button>Mon 12</ion-segment-button>
+            <ion-segment-button>Tue 13</ion-segment-button>
+            <ion-segment-button>Wed 14</ion-segment-button>
+            <ion-segment-button>Thu 15</ion-segment-button>
+            <ion-segment-button>Fri 16</ion-segment-button>
+          </ion-segment>
+          <ion-button fill="clear" (click)="toggleCalendar()">>>></ion-button>
+        </div>
+      </div>
+
+      <div class="habits-container">
+        <ion-card button (click)="editHabit('Drinking Water')">
+          <ion-card-header>
+            <ion-card-title>Drinking Water</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>0%</p>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card button (click)="editHabit('Cycling')">
+          <ion-card-header>
+            <ion-card-title>Cycling</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>0%</p>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <ion-fab class="custom-fab" slot="fixed">
+        <ion-fab-button>
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-content>
   </div>
-</ion-content>
+</ion-app>

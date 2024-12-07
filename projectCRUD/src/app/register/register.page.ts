@@ -13,8 +13,9 @@ export class RegisterPage implements OnInit {
   }
 
   password: string = '';
-  confirmPassword: string = '';
+  confirmPassword: string = ''; 
   passwordsMatch: boolean = true;
+  policyChecked: boolean = false;
 
   checkPasswordMatch() {
     this.passwordsMatch = this.password === this.confirmPassword;

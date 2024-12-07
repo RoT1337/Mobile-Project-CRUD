@@ -1,59 +1,111 @@
-ion-title {
-    color: #81B8C7;
-    font-weight: bold;
-  }
-  
-  ion-content {
+@import "../../theme/variables.scss";
+
+ion-content{
     display: flex;
-    justify-content: center;
+    text-align: center;
     align-items: center;
-    height: 100%;
-  }
-  
-  .form-container {
-    width: 90%;
-    max-width: 400px;
-    background: #663f8a;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  
-    display: flex;
+    justify-content: center;
     flex-direction: column;
-  }
+    height: 100vh;
+}
+
+.input-item {
+    --background: #d4d0e2;
+    --ion-text-color: #333;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.form-container {
+    display: flex;
+    color: black;
+    background-color: #ffffff;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.heading{
+    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+    color: #766a9f;
+    font-weight: bold;
+}
+
+.log-with-email{
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #8d8895;
+    font-weight: bold;
+}
+
+.login-link {
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    color: #000000;
+}
   
-  ion-item {
+a {
+    color: #6a78c0;
+    text-decoration: none;
+    font-weight: bold;
+}
+  
+ion-item {
     --background: transparent;
     width: 100%;
-  }
+}
+
+.privacy-policy {
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #b4b3ba;
+}
   
-  ion-button.register-button {
-    --background: #81B8C7;
-    --background-activated: #6aa2b3;
-    --color: #663f8a;
+ion-button.register-button {
+    --background: #7583ca;
+    --background-activated: #515c96;
+    --color: #edebf0;
     border-radius: 5px;
     font-weight: bold;
     margin-top: 20px;
     width: 100%;
-  }
-  
-  .login-link {
-    text-align: center;
-    display: block;
-    margin-top: 15px;
-    color: #ffffff;
-  }
-  
-  a {
-    color: #81b8c7;
-    text-decoration: none;
+}
+
+ion-button.fbButton {
+    --background: #7583ca;
+    --background-activated: #515c96;
+    --color: #edebf0;
+    border-radius: 5px;
     font-weight: bold;
-  }
+    margin-top: 20px;
+    width: 100%;
+}
+
+ion-button.googleButton {
+    --background: #e3e5ee;
+    --background-activated: #868ba5;
+    --color: #514a58;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+}
   
-  .error-message {
-    color: #ff4d4d;
+.error-message {
+    color: #ac273f;
+    font-weight: bold;
     font-size: 14px;
-    margin-top: -10px;
+    margin-top: 10px;
     margin-bottom: 10px;
     text-align: center;
-  }
+}

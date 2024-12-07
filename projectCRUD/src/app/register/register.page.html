@@ -1,52 +1,42 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Register</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border" >
+  
 </ion-header>
 
 <ion-content class="ion-padding">
   <div class="form-container">
     <form (submit)="onSubmit($event)">
-      <ion-item>
-        <ion-label position="floating">First Name</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
+      <div id="text">
+        <strong><p class="heading">CREATE YOUR ACCOUNT</p></strong>
+      </div>
+      
+      <ion-button expand="block" type="fb" class="fbButton">
+        CONTINUE WITH FACEBOOK
+      </ion-button>
 
-      <ion-item>
-        <ion-label position="floating">Last Name</ion-label>
-        <ion-input type="text" required></ion-input>
-      </ion-item>
+      <ion-button expand="block" type="google" class="googleButton">
+        CONTINUE WITH GOOGLE
+      </ion-button>
 
-      <ion-item>
-        <ion-label position="floating">Age</ion-label>
-        <ion-input type="number" required></ion-input>
-      </ion-item>
+      <ion-text class="log-with-email">
+        OR LOG IN WITH EMAIL
+      </ion-text>
 
-      <ion-item>
-        <ion-label>Gender</ion-label>
-        <ion-select placeholder="Select Gender" interface="popover" required>
-          <ion-select-option value="male">Male</ion-select-option>
-          <ion-select-option value="female">Female</ion-select-option>
-          <ion-select-option value="other">Other</ion-select-option>
-        </ion-select>
-      </ion-item>
-
-      <ion-item>
+      <ion-item class="input-item">
         <ion-label position="floating">Username</ion-label>
         <ion-input type="text" required></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="input-item">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="email" required></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="input-item">
         <ion-label position="floating">Password</ion-label>
         <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
       </ion-item>
 
-      <ion-item>
+      <ion-item class="input-item">
         <ion-label position="floating">Confirm Password</ion-label>
         <ion-input
           type="password"
@@ -57,12 +47,19 @@
         ></ion-input>
       </ion-item>
 
+      <ion-item lines="none">
+        <ion-checkbox slot="start" [(ngModel)]="policyChecked" name="policyChecked" required></ion-checkbox>
+        <ion-text class="privacy-policy">
+          I have read the <a href="#">Privacy Policy</a>
+        </ion-text>
+      </ion-item>
+
       <p class="error-message" *ngIf="!passwordsMatch && confirmPassword">
         Passwords do not match.
       </p>
 
-      <ion-button expand="block" type="submit" class="register-button" [disabled]="!passwordsMatch">
-        Register
+      <ion-button expand="block" type="submit" class="register-button" [disabled]="!passwordsMatch || !policyChecked">
+        GET STARTED
       </ion-button>
     </form>
 

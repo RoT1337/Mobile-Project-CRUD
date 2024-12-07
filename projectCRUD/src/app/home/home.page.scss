@@ -1,27 +1,86 @@
-#container {
-  text-align: center;
+@import "../../theme/variables.scss";
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    background-color: #4d57c8;
+    margin-bottom: 1rem;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.habits-container {
+    display: flex;
+    color: black;
+    background-color: #4d57c8;
+    align-items: first baseline;
+    justify-content: space-between;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.week {
+    display: flex;
+    align-items: center;
 }
 
-#container a {
-  text-decoration: none;
+.custom-edit-button {
+  --background: #ffffff;
+  --color: #424aa9;
+  --border-radius: 20px;
+  font-weight: bold;
+}
+
+
+ion-button{
+  --background: #424aa9;
+  --background-activated: #2d3273;
+  --color: #ffffff;
+}
+
+ion-segment-button {
+  --background: #424aa9;
+  justify-content: space-between;
+  justify-content: center;
+  --color: #ffffff;
+}
+
+ion-toolbar {
+    --background: #4d57c8;
+    --color: #ffffff;
+}
+
+ion-card-title {
+    font-size: 1.2rem;
+    color: #49435d;
+}
+
+ion-card-content p {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4d57c8;
+}
+
+ion-card {
+    width: 150px;
+    height: 200px;
+    --border-radius: 16px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    --background: #ffffff;
+}
+
+ion-fab-button {
+    --background: #e5e6f3;
+    --color: #7366ad;
+}
+
+.custom-fab {
+  bottom: 40px;
+  right: 40px;
 }
