@@ -21,7 +21,9 @@
       </ion-buttons>
       <ion-title>Dashboard</ion-title>
       <ion-buttons slot="end">
-        <ion-button (click)="enterEditMode()" class="custom-edit-button">Edit</ion-button>
+        <ion-button fill="clear" slot="end" (click)="openEditModal(habits)">
+          Edit
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>
@@ -67,10 +69,6 @@
             <p>Progress: {{ habit.progress }}%</p>
           </ion-card-content>
         </ion-card>
-  
-        <ion-button fill="clear" slot="end" (click)="openEditModal(habit)">
-          Edit
-        </ion-button>
       </div>
     </div>
 

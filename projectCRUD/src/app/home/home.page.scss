@@ -1,9 +1,5 @@
 @import "../../theme/variables.scss";
 
-ion-menu-button {
-  --icon-color: #ffffff;
-}
-
 .calendar-header {
     overflow-x: auto;
     white-space: nowrap;
@@ -19,13 +15,6 @@ ion-menu-button {
   overflow-x: auto;
   white-space: nowrap;
   align-items: center;
-}
-
-.custom-edit-button {
-  --background: #ffffff;
-  --color: #424aa9;
-  --border-radius: 20px;
-  font-weight: bold;
 }
 
 .habits-container {

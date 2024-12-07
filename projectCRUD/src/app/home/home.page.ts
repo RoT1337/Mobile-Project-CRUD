@@ -64,9 +64,6 @@ export class HomePage {
     }
   }
 
-  enterEditMode() {
-    this.isEditMode = true;
-  }
   openEditModal(habit: any) {
     this.selectedHabit = habit;
     this.isModalOpen = true;
