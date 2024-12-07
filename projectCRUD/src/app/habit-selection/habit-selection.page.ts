@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./habit-selection.page.scss'],
 })
 export class HabitSelectionPage implements OnInit {
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  selectHabit(habit: string) {
+    console.log(`${habit} habit selected`);
   }
-
 }

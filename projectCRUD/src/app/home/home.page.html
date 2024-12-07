@@ -1,10 +1,9 @@
-<ion-app>
-  <ion-menu side="start" menuId="main-menu" contentId="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
+<ion-menu side="start" menuId="main-menu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
     <ion-content>
       <ion-list>
         <ion-item button>Profile</ion-item>
@@ -14,58 +13,70 @@
     </ion-content>
   </ion-menu>
 
-  <div class="ion-page" id="main-content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-        </ion-buttons>
-        <ion-title>Dashboard</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="enterEditMode()" class="custom-edit-button">Edit</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Dashboard</ion-title>
+      <ion-buttons slot="end">
+        <ion-button fill="clear" slot="end" (click)="openEditModal(habits)">
+          Edit
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
-    <ion-content class="ion-padding">
-      <div class="calendar-header">
-        <div class="week">
-          <ion-segment scrollable>
-            <ion-segment-button>Mon 12</ion-segment-button>
-            <ion-segment-button>Tue 13</ion-segment-button>
-            <ion-segment-button>Wed 14</ion-segment-button>
-            <ion-segment-button>Thu 15</ion-segment-button>
-            <ion-segment-button>Fri 16</ion-segment-button>
-          </ion-segment>
-          <ion-button fill="clear" (click)="toggleCalendar()">>>></ion-button>
-        </div>
+  <ion-content class="calendar-padding">
+    <div class="calendar-header">
+      <div class="week">
+        <ion-segment scrollable>
+          <ion-segment-button *ngFor="let day of currentWeek"
+                              [disabled]="day.isDisabled"
+                              [class.selected]="day.date === selectedDay">
+            {{ day.dayName }} {{ day.date }}
+          </ion-segment-button>
+        </ion-segment>
       </div>
+    </div>
 
-      <div class="habits-container">
-        <ion-card button (click)="editHabit('Drinking Water')">
+    <div class="dropdown-container">
+      <ion-item class="dropdown-item">
+        <ion-label>Filter by Category</ion-label>
+        <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterHabits()">
+          <ion-select-option value="all">All</ion-select-option>
+          <ion-select-option value="health">Health & Fitness</ion-select-option>
+          <ion-select-option value="productivity">Productivity</ion-select-option>
+          <ion-select-option value="finance">Finance</ion-select-option>
+          <ion-select-option value="personal">Personal Development</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
+
+    <div class="habits-container">
+      <div *ngIf="habits.length === 0" class="empty-placeholder">
+        <p>No habits yet! Add a new habit to get started.</p>
+      </div>
+  
+      <div *ngFor="let habit of habits" class="habit-card">
+        <ion-card (click)="openProgressModal(habit)">
           <ion-card-header>
-            <ion-card-title>Drinking Water</ion-card-title>
+            <ion-card-title>{{ habit.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>0%</p>
-          </ion-card-content>
-        </ion-card>
-
-        <ion-card button (click)="editHabit('Cycling')">
-          <ion-card-header>
-            <ion-card-title>Cycling</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <p>0%</p>
+            <p>Goal: {{ habit.goal }} ({{ habit.frequency }})</p>
+            <p>Progress: {{ habit.progress }}%</p>
           </ion-card-content>
         </ion-card>
       </div>
+    </div>
 
-      <ion-fab class="custom-fab" slot="fixed">
-        <ion-fab-button>
-          <ion-icon name="add"></ion-icon>
-        </ion-fab-button>
-      </ion-fab>
-    </ion-content>
-  </div>
-</ion-app>
+    <ion-fab class="custom-fab" slot="fixed">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+</div>
+
