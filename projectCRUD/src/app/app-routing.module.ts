@@ -22,7 +22,15 @@ const routes: Routes = [
   {
     path: 'logon',
     loadChildren: () => import('./logon/logon.module').then( m => m.LogonPageModule)
+  },  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+
 ];
 
 @NgModule({
