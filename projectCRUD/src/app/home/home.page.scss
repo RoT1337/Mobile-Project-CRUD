@@ -1,12 +1,31 @@
 @import "../../theme/variables.scss";
 
+ion-menu-button {
+  --icon-color: #ffffff;
+}
+
 .calendar-header {
+    overflow-x: auto;
+    white-space: nowrap;
     display: flex;
     justify-content: space-between;
     justify-content: center;
     align-items: center;
     background-color: #4d57c8;
     margin-bottom: 1rem;
+}
+
+.week {
+  overflow-x: auto;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.custom-edit-button {
+  --background: #ffffff;
+  --color: #424aa9;
+  --border-radius: 20px;
+  font-weight: bold;
 }
 
 .habits-container {
@@ -21,23 +40,44 @@
     height: 100%;
 }
 
-.week {
-    display: flex;
-    align-items: center;
+.empty-placeholder {
+  text-align: center;
+  color: #ffffff;
+  font-style: italic;
 }
 
-.custom-edit-button {
+.dropdown-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+  width: 100%;
+}
+
+.dropdown-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
   --background: #ffffff;
-  --color: #424aa9;
-  --border-radius: 20px;
-  font-weight: bold;
+  --color: #000000;
+  --inner-padding-end: 0;
+  border: none;
 }
 
+.dropdown-label {
+  flex-shrink: 0;
+  font-size: 16px;
+  color: #333;
+}
 
 ion-button{
   --background: #424aa9;
   --background-activated: #2d3273;
   --color: #ffffff;
+}
+
+ion-segment {
+  width: 100%
 }
 
 ion-segment-button {
@@ -75,6 +115,12 @@ ion-card {
     --background: #ffffff;
 }
 
+
+ion-select {
+  flex-grow: 1;
+  max-width: 200px;
+}
+
 ion-fab-button {
     --background: #e5e6f3;
     --color: #7366ad;
@@ -84,3 +130,29 @@ ion-fab-button {
   bottom: 40px;
   right: 40px;
 }
+/*
+ion-modal .modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.goal-type ion-button {
+  margin: 5px;
+}
+
+ion-button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+ion-item {
+  width: 100%;
+}
+
+ion-datetime {
+  width: 100%;
+  margin-top: 10px;
+}
+*/
