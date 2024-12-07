@@ -1,0 +1,46 @@
+@import "../../theme/variables.scss"; 
+.wrapper{
+    display: flex;
+     height: 100%;
+    width: 100%;
+    color: black;
+    background-color: map-get($colors, primary);
+    justify-content: flex-start;
+   align-items: center;
+   flex-direction: column;
+   padding-top: 20px;
+}
+
+#settings{
+    color: black;
+    font-size: larger;
+ 
+}
+
+ion-card{
+    width: 80%; 
+  max-width: 400px; 
+  height: 5%; 
+  max-height: 200px; 
+  padding: 0px;
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: black;
+
+}
+
+ion-card-title{
+    font-size: small;
+    display: flex;
+    justify-content: space-between;
+    flex:1;
+}
+
+ion-toggle{
+    --handle-width: 20px;
+    --handle-height: 20px;
+    --width:  4px;
+    --height: 5px;
+}

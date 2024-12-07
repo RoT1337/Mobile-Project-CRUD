@@ -1,11 +1,70 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" >
   
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <form (submit)="onSubmit($event)">
+      <div id="text">
+        <strong><p class="heading">CREATE YOUR ACCOUNT</p></strong>
+      </div>
+      
+      <ion-button expand="block" type="fb" class="fbButton">
+        CONTINUE WITH FACEBOOK
+      </ion-button>
+
+      <ion-button expand="block" type="google" class="googleButton">
+        CONTINUE WITH GOOGLE
+      </ion-button>
+
+      <ion-text class="log-with-email">
+        OR LOG IN WITH EMAIL
+      </ion-text>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Username</ion-label>
+        <ion-input type="text" required></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="email" required></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      </ion-item>
+
+      <ion-item class="input-item">
+        <ion-label position="floating">Confirm Password</ion-label>
+        <ion-input
+          type="password"
+          [(ngModel)]="confirmPassword"
+          name="confirmPassword"
+          (ionInput)="checkPasswordMatch()"
+          required
+        ></ion-input>
+      </ion-item>
+
+      <ion-item lines="none">
+        <ion-checkbox slot="start" [(ngModel)]="policyChecked" name="policyChecked" required></ion-checkbox>
+        <ion-text class="privacy-policy">
+          I have read the <a href="#">Privacy Policy</a>
+        </ion-text>
+      </ion-item>
+
+      <p class="error-message" *ngIf="!passwordsMatch && confirmPassword">
+        Passwords do not match.
+      </p>
+
+      <ion-button expand="block" type="submit" class="register-button" [disabled]="!passwordsMatch || !policyChecked">
+        GET STARTED
+      </ion-button>
+    </form>
+
+    <ion-text class="login-link">
+      Already have an account? <a href="#">Login</a>
+    </ion-text>
+  </div>
 </ion-content>

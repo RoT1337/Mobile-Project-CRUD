@@ -22,7 +22,23 @@ const routes: Routes = [
   {
     path: 'logon',
     loadChildren: () => import('./logon/logon.module').then( m => m.LogonPageModule)
+  },  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
+  {
+    path: 'notifications',
+    loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
+  },
+  {
+    path: 'habit-selection',
+    loadChildren: () => import('./habit-selection/habit-selection.module').then( m => m.HabitSelectionPageModule)
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
+  },
+
 ];
 
 @NgModule({
