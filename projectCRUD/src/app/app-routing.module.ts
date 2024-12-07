@@ -30,6 +30,10 @@ const routes: Routes = [
     path: 'notifications',
     loadChildren: () => import('./notifications/notifications.module').then( m => m.NotificationsPageModule)
   },
+  {
+    path: 'habit-selection',
+    loadChildren: () => import('./habit-selection/habit-selection.module').then( m => m.HabitSelectionPageModule)
+  },
 
 ];
 
