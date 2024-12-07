@@ -1,0 +1,29 @@
+ion-content {
+    --background: linear-gradient(to bottom, #a8edea, #fed6e3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0; 
+  }
+  
+  ion-grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    row-gap: 12px; 
+  }
+  
+  ion-row {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  ion-button {
+    height: 80px;
+    font-size: 18px; 
+    --border-radius: 12px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); 
+    width: 90%;
+  }
+  

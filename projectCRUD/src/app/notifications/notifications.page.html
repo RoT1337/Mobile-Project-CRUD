@@ -1,13 +1,24 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>notifications</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">notifications</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div class="wrapper">
+    <div class="notification-container">
+      <div class="notification">
+        <div class="notification-icon">
+          <img src="assets/icons/workout.png" alt="workout icon" />
+        </div>
+        <div class="notification-content">
+          <h4>Don’t miss your lower-body workout</h4>
+          <p>About 3 hours ago</p>
+        </div>
+      </div>
+      <div class="notification">
+        <div class="notification-icon">
+          <img src="assets/icons/meals.png" alt="meals icon" />
+        </div>
+        <div class="notification-content">
+          <h4>Hey, let’s add some meals for your b...</h4>
+          <p>About 3 hours ago</p>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
