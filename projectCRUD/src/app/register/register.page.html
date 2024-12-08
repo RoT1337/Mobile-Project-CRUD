@@ -1,5 +1,9 @@
 <ion-header class="ion-no-border" >
-  
+  <ion-toolbar color="translucent">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -9,11 +13,11 @@
         <strong><p class="heading">CREATE YOUR ACCOUNT</p></strong>
       </div>
       
-      <ion-button expand="block" type="fb" class="fbButton">
+      <ion-button expand="block" type="fb" (click)="onRegisterClick()" class="fbButton">
         CONTINUE WITH FACEBOOK
       </ion-button>
 
-      <ion-button expand="block" type="google" class="googleButton">
+      <ion-button expand="block" type="google" (click)="onRegisterClick()" class="googleButton">
         CONTINUE WITH GOOGLE
       </ion-button>
 
@@ -58,7 +62,7 @@
         Passwords do not match.
       </p>
 
-      <ion-button expand="block" type="submit" class="register-button" [disabled]="!passwordsMatch || !policyChecked">
+      <ion-button expand="block" type="submit" (click)="onRegisterClick()" class="register-button" [disabled]="!passwordsMatch || !policyChecked">
         GET STARTED
       </ion-button>
     </form>

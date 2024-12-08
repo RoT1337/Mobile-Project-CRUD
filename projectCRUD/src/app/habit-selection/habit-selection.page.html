@@ -1,75 +1,36 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Habit Selection</ion-title>
-  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Habit Selection</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="primary" (click)="selectHabit('Drinking')">
-          <ion-icon name="water" slot="start"></ion-icon>
-          Drinking
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="secondary" (click)="selectHabit('Cycling')">
-          <ion-icon name="bicycle" slot="start"></ion-icon>
-          Cycling
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="tertiary" (click)="selectHabit('Walking')">
-          <ion-icon name="walk" slot="start"></ion-icon>
-          Walking
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="success" (click)="selectHabit('Sleeping')">
-          <ion-icon name="bed" slot="start"></ion-icon>
-          Sleeping
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="warning" (click)="selectHabit('Eating')">
-          <ion-icon name="restaurant" slot="start"></ion-icon>
-          Eating
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="danger" (click)="selectHabit('Workout')">
-          <ion-icon name="fitness" slot="start"></ion-icon>
-          Workout
-        </ion-button>
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="light" (click)="selectHabit('Studying')">
-          <ion-icon name="book" slot="start"></ion-icon>
-          Studying
-        </ion-button>
-      </ion-col>
-      <ion-col size="6">
-        <ion-button expand="block" size="large" color="dark" (click)="selectHabit('Productivity')">
-          <ion-icon name="briefcase" slot="start"></ion-icon>
-          Productivity
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title style="color: black;">Create a Habit</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form (ngSubmit)="addHabit()">
+        <ion-item>
+          <ion-label position="floating">Habit Name</ion-label>
+          <ion-input type="text" [(ngModel)]="habit.name" name="name" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Habit Description</ion-label>
+          <ion-textarea [(ngModel)]="habit.description" name="description"></ion-textarea>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating">Habit Category</ion-label>
+          <ion-select [(ngModel)]="habit.category" name="category" required>
+            <ion-select-option value="Health & Fitness">Health & Fitness</ion-select-option>
+            <ion-select-option value="Productivity">Productivity</ion-select-option>
+            <ion-select-option value="Finance">Finance</ion-select-option>
+            <ion-select-option value="Personal Development">Personal Development</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label style="margin-bottom: 40px;" position="floating">Habit Date & Time</ion-label>
+          <ion-datetime display-format="h:mm A" picker-format="h mm A" [(ngModel)]="habit.dateTime" name="dateTime" required></ion-datetime>
+        </ion-item>
+        <ion-button expand="block" type="submit">Save Habit</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

@@ -1,0 +1,7 @@
+Add back buttons for the following pages :< =
+> login
+> profile
+> settings
+> habit-selection
+
+Remove log out from settings

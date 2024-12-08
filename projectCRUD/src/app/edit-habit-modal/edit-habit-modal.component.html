@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Habit</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Habit Name</ion-label>
+    <ion-input type="text" [(ngModel)]="habit.name" name="name" required></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Habit Description</ion-label>
+    <ion-textarea [(ngModel)]="habit.description" name="description"></ion-textarea>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Habit Category</ion-label>
+    <ion-select [(ngModel)]="habit.category" name="category" required>
+      <ion-select-option value="Health & Fitness">Health & Fitness</ion-select-option>
+      <ion-select-option value="Productivity">Productivity</ion-select-option>
+      <ion-select-option value="Finance">Finance</ion-select-option>
+      <ion-select-option value="Personal Development">Personal Development</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Habit Date & Time</ion-label>
+    <ion-datetime display-format="h:mm A" picker-format="h mm A" [(ngModel)]="habit.dateTime" name="dateTime" required></ion-datetime>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Progress (%)</ion-label>
+    <ion-input type="number" [(ngModel)]="habit.progress" name="progress" required></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="saveHabitEdits()">Save</ion-button>
+</ion-content>

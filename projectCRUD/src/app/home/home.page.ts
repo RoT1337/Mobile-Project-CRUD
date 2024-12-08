@@ -1,25 +1,37 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonModal } from '@ionic/angular';
-import { OverlayEventDetail } from '@ionic/core/components';
+import { Component, OnInit } from '@angular/core';
+import { NavController, AlertController, ModalController } from '@ionic/angular';
+import { AuthService } from '../services/auth.service';
+import { EditHabitModalComponent } from '../edit-habit-modal/edit-habit-modal.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   selectedHabit: any;
   isModalOpen: boolean = false;
   isEditMode: boolean = false;
-  selectedCategory: string | 'all' |null = null;
+  selectedCategory: string | 'all' | null = null;
   currentWeek: { dayName: string; date: string; isDisabled: boolean }[] = [];
   selectedDay: string = '';
+  habits: { name: string; description?: string; category: string; date: string; time: string; progress: number }[] = [];
+  filteredHabits: { name: string; description?: string; category: string; date: string; time: string; progress: number }[] = [];
 
-  constructor() {}
+  constructor(
+    private navCtrl: NavController,
+    private authService: AuthService,
+    private alertController: AlertController,
+    private modalController: ModalController
+  ) {}
 
   ngOnInit() {
     this.generateCurrentWeek();
     this.highlightToday();
+  }
+
+  ionViewWillEnter() {
+    this.loadHabits();
   }
 
   generateCurrentWeek() {
@@ -39,7 +51,7 @@ export class HomePage {
 
       this.currentWeek.push({
         dayName: currentDay.toLocaleString('default', { weekday: 'short' }),
-        date: dayString, 
+        date: dayString,
         isDisabled,
       });
     }
@@ -50,24 +62,42 @@ export class HomePage {
     this.selectedDay = today.getDate().toString().padStart(2, '0');
   }
 
-
-  habits: { name: string; frequency: string; goal: number; progress: number; endDate: string; category?: string | null }[] = [];
+  loadHabits() {
+    this.authService.getAllHabits().subscribe(habits => {
+      this.habits = habits;
+      this.filterHabits(); // Filter habits after loading
+    });
+  }
 
   filterHabits() {
     if (this.selectedCategory === 'all') {
-      return this.habits;
+      this.filteredHabits = this.habits;
     } else {
-      return this.habits.filter(habit => {
-        const category = habit.category ?? 'unknown';
-        return category === this.selectedCategory;
-      });
+      this.filteredHabits = this.habits.filter(habit => habit.category === this.selectedCategory);
     }
   }
 
-  openEditModal(habit: any) {
-    this.selectedHabit = habit;
-    this.isModalOpen = true;
-    this.isEditMode = true;
+  async openEditModal(habit: any) {
+    // Ensure dateTime is correctly set
+    habit.dateTime = `${habit.date}T${habit.time}`;
+
+    const modal = await this.modalController.create({
+      component: EditHabitModalComponent,
+      componentProps: { habit }
+    });
+
+    modal.onDidDismiss().then((result) => {
+      if (result.data) {
+        const updatedHabit = result.data;
+        const index = this.habits.findIndex(h => h.name === updatedHabit.name);
+        if (index !== -1) {
+          this.habits[index] = updatedHabit;
+          this.filterHabits(); // Filter habits after updating
+        }
+      }
+    });
+
+    return await modal.present();
   }
 
   selectHabit(habit: { endDate?: string }) {
@@ -85,74 +115,51 @@ export class HomePage {
     this.selectedHabit = null;
   }
 
-  deleteHabit() {
-    this.habits = this.habits.filter((h) => h !== this.selectedHabit);
-    this.closeModal();
+  async confirmDeleteHabit(name: string) {
+    const alert = await this.alertController.create({
+      header: 'Confirm Delete',
+      message: 'Are you sure you want to delete this habit?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Delete',
+          handler: () => {
+            this.deleteHabit(name);
+          },
+        },
+      ],
+    });
+
+    await alert.present();
   }
 
-  saveHabitEdits(name: string, frequency: string, goal: number, endDate: string) {
-    this.selectedHabit.name = name || '';
-    this.selectedHabit.frequency = frequency || 'daily'; 
-    this.selectedHabit.goal = goal || 0;
-    this.selectedHabit.endDate = endDate || '';
-  
-    this.closeModal();
+  deleteHabit(name: string) {
+    this.authService.deleteHabit(name).subscribe(() => {
+      this.habits = this.habits.filter(h => h.name !== name);
+      this.filterHabits(); // Filter habits after deleting
+    });
+  }
+
+  onProfileClick() {
+    this.navCtrl.navigateForward('/profile');
+  }
+
+  onSettingsClick() {
+    this.navCtrl.navigateForward('/settings');
+  }
+
+  onNotificationsClick() {
+    this.navCtrl.navigateForward('/notifications');
+  }
+
+  onLogOutClick() {
+    this.navCtrl.navigateRoot('/login');
+  }
+
+  onAddClick() {
+    this.navCtrl.navigateForward('/habit-selection');
   }
 }
-
-//anhi lang sa nako ibutang kay gagubot akong utok sa <form (submit)="saveHabitEdits(name.value, frequency.value, +goal.value, endDate.value)">
-//siguro tunggod lang sad wla pa gipangbutang
-
-/*
-<ion-modal [isOpen]="isModalOpen" (willDismiss)="closeModal()">
-  <ng-container *ngIf="!isEditMode">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>{{ selectedHabit?.name }} Progress</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="closeModal()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <p>Progress: {{ selectedHabit?.progress }}%</p>
-    </ion-content>
-  </ng-container>
-
-  <ng-container *ngIf="isEditMode">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Edit {{ selectedHabit?.name }}</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="closeModal()">Close</ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <form (submit)="saveHabitEdits(name.value, frequency.value, +goal.value, endDate.value)">
-
-        <ion-item>
-          <ion-label position="floating">Name</ion-label>
-          <ion-input #name [value]="selectedHabit?.name"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Frequency</ion-label>
-          <ion-select #frequency [value]="selectedHabit?.frequency">
-            <ion-select-option value="daily">Daily</ion-select-option>
-            <ion-select-option value="weekly">Weekly</ion-select-option>
-          </ion-select>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">Goal</ion-label>
-          <ion-input type="number" #goal [value]="selectedHabit?.goal"></ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-label position="floating">End Date</ion-label>
-          <ion-datetime #endDate [value]="selectedHabit?.endDate">
-        </ion-item>
-        <ion-button expand="block" type="submit">Save</ion-button>
-      </form>
-    </ion-content>
-  </ng-container>
-</ion-modal>
-*/

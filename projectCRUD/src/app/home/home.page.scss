@@ -1,14 +1,13 @@
 @import "../../theme/variables.scss";
 
 .calendar-header {
-    overflow-x: auto;
-    white-space: nowrap;
-    display: flex;
-    justify-content: space-between;
-    justify-content: center;
-    align-items: center;
-    background-color: map-get($colors, primary);
-    margin-bottom: 1rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: map-get($colors, primary);
+  margin-bottom: 1rem;
 }
 
 .week {
@@ -18,15 +17,38 @@
 }
 
 .habits-container {
-    display: flex;
-    color: black;
-    background-color: map-get($colors, primary);
-    align-items: first baseline;
-    justify-content: space-between;
-    justify-content: center;
-    flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  padding: 16px;
+  justify-items: center;
+
+  .habit-card {
     width: 100%;
-    height: 100%;
+    ion-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      ion-card-title {
+        font-size: 1.2rem;
+        color: #49435d;
+      }
+      ion-card-content {
+        font-size: 1rem;
+        color: #4d57c8;
+        p {
+          font-size: 0.9rem;
+          margin: 0;
+        }
+        .card-buttons {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 10px;
+        }
+      }
+    }
+  }
 }
 
 .empty-placeholder {
@@ -59,14 +81,20 @@
   color: #333;
 }
 
-ion-button{
+ion-button {
   background-color: map-get($colors, primary);
   --background-activated: #2d3273;
   --color: #ffffff;
 }
 
+ion-button[fill="clear"] {
+  background-color: transparent !important;
+  --background: transparent !important;
+  --color: inherit !important;
+}
+
 ion-segment {
-  width: 100%
+  width: 100%;
 }
 
 ion-segment-button {
@@ -77,33 +105,30 @@ ion-segment-button {
 }
 
 ion-toolbar {
-    --background: #653c92;
-    --color: #ffffff;
+  --background: #653c92;
+  --color: #ffffff;
 }
 
 ion-card-title {
-    font-size: 1.2rem;
-    color: #49435d;
+  font-size: 1.2rem;
+  color: #49435d;
 }
 
 ion-card-content p {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #4d57c8;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #4d57c8;
 }
 
 ion-card {
-    width: 150px;
-    height: 200px;
-    --border-radius: 16px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    --background: #ffffff;
+  --border-radius: 16px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  --background: #ffffff;
 }
-
 
 ion-select {
   flex-grow: 1;
@@ -111,37 +136,11 @@ ion-select {
 }
 
 ion-fab-button {
-    --background: #e5e6f3;
-    --color: #7366ad;
+  --background: #e5e6f3;
+  --color: #7366ad;
 }
 
 .custom-fab {
   bottom: 40px;
   right: 40px;
 }
-/*
-ion-modal .modal-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.goal-type ion-button {
-  margin: 5px;
-}
-
-ion-button {
-  width: 100%;
-  margin-top: 20px;
-}
-
-ion-item {
-  width: 100%;
-}
-
-ion-datetime {
-  width: 100%;
-  margin-top: 10px;
-}
-*/

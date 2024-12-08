@@ -25,15 +25,35 @@ db.serialize(() => {
 
   db.run(
     `CREATE TABLE IF NOT EXISTS habits (
-    name TEXT NOT NULL,
+    name TEXT NOT NULL UNIQUE,
     description TEXT,
     category TEXT NOT NULL,
-    frequency TEXT NOT NULL
+    date TEXT NOT NULL,
+    time TEXT NOT NULL,
+    progress INTEGER NOT NULL DEFAULT 0
     )`, (err) => {
     if (err) {
       console.error('Error creating habits table:', err.message);
     } else {
-      console.log('Habits table created successfully');
+      console.log('Habits table created successfully.');
+    }
+  });
+
+  db.run(
+    `ALTER TABLE habits ADD COLUMN progress INTEGER NOT NULL DEFAULT 0`, (err) => {
+    if (err && !err.message.includes('duplicate column name')) {
+      console.error('Error adding progress column:', err.message);
+    } else {
+      console.log('Progress column added successfully.');
+    }
+  });
+
+  db.run(
+    `CREATE UNIQUE INDEX IF NOT EXISTS idx_habits_name ON habits (name)`, (err) => {
+    if (err) {
+      console.error('Error adding unique constraint to name column:', err.message);
+    } else {
+      console.log('Unique constraint added to name column successfully.');
     }
   });
 });

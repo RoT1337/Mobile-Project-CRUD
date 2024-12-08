@@ -4,32 +4,30 @@
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-item button>Profile</ion-item>
-        <ion-item button>Settings</ion-item>
-        <ion-item button>Notifications</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <ion-content>
+    <ion-list>
+      <ion-item button (click)="onProfileClick()">Profile</ion-item>
+      <ion-item button (click)="onSettingsClick()">Settings</ion-item>
+      <ion-item button (click)="onLogOutClick()">Log Out</ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
 <div class="ion-page" id="main-content">
   <ion-header>
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Dashboard</ion-title>
-      <ion-buttons slot="end">
-        <ion-button fill="clear" slot="end" (click)="openEditModal(habits)">
-          Edit
+        <ion-button (click)="onNotificationsClick()" fill="clear">
+          <ion-icon name="notifications"></ion-icon>
         </ion-button>
       </ion-buttons>
+      <ion-title>Dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-content class="calendar-padding">
-    <div class="calendar-header">
+    <!--<div class="calendar-header">
       <div class="week">
         <ion-segment scrollable>
           <ion-segment-button *ngFor="let day of currentWeek"
@@ -39,44 +37,49 @@
           </ion-segment-button>
         </ion-segment>
       </div>
-    </div>
+    </div>-->
 
     <div class="dropdown-container">
       <ion-item class="dropdown-item">
         <ion-label>Filter by Category</ion-label>
         <ion-select [(ngModel)]="selectedCategory" (ionChange)="filterHabits()">
           <ion-select-option value="all">All</ion-select-option>
-          <ion-select-option value="health">Health & Fitness</ion-select-option>
-          <ion-select-option value="productivity">Productivity</ion-select-option>
-          <ion-select-option value="finance">Finance</ion-select-option>
-          <ion-select-option value="personal">Personal Development</ion-select-option>
+          <ion-select-option value="Health & Fitness">Health & Fitness</ion-select-option>
+          <ion-select-option value="Productivity">Productivity</ion-select-option>
+          <ion-select-option value="Finance">Finance</ion-select-option>
+          <ion-select-option value="Personal Development">Personal Development</ion-select-option>
         </ion-select>
       </ion-item>
     </div>
 
     <div class="habits-container">
-      <div *ngIf="habits.length === 0" class="empty-placeholder">
+      <div *ngIf="filteredHabits.length === 0" class="empty-placeholder">
         <p>No habits yet! Add a new habit to get started.</p>
       </div>
   
-      <div *ngFor="let habit of habits" class="habit-card">
-        <ion-card (click)="openProgressModal(habit)">
+      <div *ngFor="let habit of filteredHabits" class="habit-card">
+        <ion-card>
           <ion-card-header>
             <ion-card-title>{{ habit.name }}</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>Goal: {{ habit.goal }} ({{ habit.frequency }})</p>
+            <p *ngIf="habit.description">Description: {{ habit.description }}</p>
+            <p>Deadline Date: {{ habit.date }}</p>
+            <p>Deadline Time: {{ habit.time }}</p>
             <p>Progress: {{ habit.progress }}%</p>
+            <div class="card-buttons">
+              <ion-button color="danger" (click)="confirmDeleteHabit(habit.name); $event.stopPropagation();">Delete</ion-button>
+              <ion-button color="primary" (click)="openEditModal(habit); $event.stopPropagation();">Edit</ion-button>
+            </div>
           </ion-card-content>
         </ion-card>
       </div>
     </div>
 
     <ion-fab class="custom-fab" slot="fixed">
-      <ion-fab-button>
+      <ion-fab-button (click)="onAddClick()">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
     </ion-fab>
   </ion-content>
 </div>
-

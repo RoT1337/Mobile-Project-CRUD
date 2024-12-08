@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterPage implements OnInit {
 
-  constructor() { }
+  constructor(private navCtrl: NavController) { }
 
   ngOnInit() {
   }
@@ -29,5 +30,9 @@ export class RegisterPage implements OnInit {
     } else {
       console.error('Passwords do not match.');
     }
+  }
+
+  onRegisterClick() {
+    this.navCtrl.navigateForward('/home');
   }
 }

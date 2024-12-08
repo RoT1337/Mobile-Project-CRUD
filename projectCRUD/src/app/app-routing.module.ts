@@ -22,7 +22,8 @@ const routes: Routes = [
   {
     path: 'logon',
     loadChildren: () => import('./logon/logon.module').then( m => m.LogonPageModule)
-  },  {
+  },
+  {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   },
@@ -37,7 +38,7 @@ const routes: Routes = [
   {
     path: 'profile',
     loadChildren: () => import('./profile/profile.module').then( m => m.ProfilePageModule)
-  },
+  }
 
 ];
 
