@@ -26,7 +26,7 @@ db.serialize(() => {
   db.run(
     `CREATE TABLE IF NOT EXISTS habits (
     name TEXT NOT NULL,
-    description TEXT NOT NULL,
+    description TEXT,
     category TEXT NOT NULL,
     frequency TEXT NOT NULL
     )`, (err) => {
